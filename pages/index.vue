@@ -52,7 +52,6 @@
 </template>
 
 <script>
-import Logo from '~components/Logo.vue'
 
 export default {
   data() {
@@ -61,11 +60,10 @@ export default {
     }
   },
   components: {
-    Logo
   },
   methods: {
     gotoCityList() {
-      this.$router.push({ path: '/city_list' })
+      this.$router.push({ path: '/cityList' })
     },
     downloadApp() {
 

@@ -15,7 +15,7 @@
 
 <script>
 import axios from 'axios'
-import estimateHead from '~components/head.vue'
+import estimateHead from '~/components/head.vue'
 export default {
   asyncData ({ params }) {
     return axios.get(`https://inner299.2boss.cn/estimate/customer/home/getCityList`)

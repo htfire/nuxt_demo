@@ -56,10 +56,10 @@
 <script>
 import axios from 'axios'
 
-import estimateHead from '~components/head.vue'
-import downloadApp from '~components/download_app.vue'
-import setShareInfoForWechat from '~assets/libs/shareForWechat.js'
-import { recordEvent } from '~assets/libs/recordEvent.js'
+import estimateHead from '~/components/head.vue'
+import downloadApp from '~/components/download_app.vue'
+import setShareInfoForWechat from '~/assets/libs/shareForWechat.js'
+import { recordEvent } from '~/assets/libs/recordEvent.js'
 export default {
   asyncData ({  }) {
     let params = {

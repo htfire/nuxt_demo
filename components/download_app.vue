@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import {recordEvent} from '~assets/libs/recordEvent.js'
+import {recordEvent} from '~/assets/libs/recordEvent.js'
 export default {
 	name: 'download_app',
 	props: ['fromPage','cityId','houseId'],

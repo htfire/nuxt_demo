@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import mHead from '~components/head.vue'
+import mHead from '~/components/head.vue'
 import axios from 'axios'
 export default {
   async asyncData (params) {
