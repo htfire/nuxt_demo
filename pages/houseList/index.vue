@@ -85,77 +85,75 @@
                         </div>
                     </div>
                 </div>
-                <div class="new_guapai box" v-if="onSalelists.length>0">
-                    <div class="box_title">
-                        <div class="left">
-                            <p>最新挂牌房源</p>
-                            <p>房源信息来自中介官网发布信息</p>
-                        </div>
-                        <div class="right">
-                            <span @click="getMore">查看更多</span><img src="../../assets/img/new_arrow_right.png">
-                        </div>
-                    </div>
-                    <div class="box_content">
-                        <estimate-item :estimate-lists="onSalelists"></estimate-item>
-                    </div>
-                </div>
-                <!-- <house-same :plate-info="{plateId: houseHeaderInfoOne.plate_id,plateName:houseHeaderInfoOne.plate_name}"></house-same> -->
+                <!-- <div class="new_guapai box" v-if="onSalelists.length>0">
+        					<div class="box_title">
+        						<div class="left">
+        							<p>最新挂牌房源</p>
+        							<p>房源信息来自中介官网发布信息</p>
+        						</div>
+        						<div class="right">
+        							<span @click="getMore">查看更多</span><img src="../../assets/img/new_arrow_right.png">
+        						</div>
+        					</div>
+        					<div class="box_content">
+        						<estimate-item :estimate-lists="onSalelists"></estimate-item>
+        					</div>
+        				</div>
+        				<house-same :plate-info="{plateId: houseHeaderInfoOne.plate_id,plateName:houseHeaderInfoOne.plate_name}"></house-same> -->
             </div>
-            <div class="tab2" v-show="tabIndex==2">
-                <!-- <house-pie-charts v-if="tabIndex==2"></house-pie-charts> -->
-                <div class="trad_agency box" v-if="tabIndex==2&&agencyList.length>0">
-                    <div class="box_title">成交机构（近六个月）</div>
-                    <div class="box_content">
-                        <div class="agency-content flex-row has-padding-margin" v-if="key<5" v-for="(item,key) in agencyList" :key="key">
-                            <div class="agency-name">{{key+1}}.{{item.agent}}</div>
-                            <div class="agency-progress">
-                                <div class="progress-inner" :style="{width: item.percent+'%'}"></div>
-                            </div>
-                            <div class="trade-number">{{item.count}}套</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="trad-history box" v-if="tabIndex==2">
-                    <div class="box_title">
-                        <div class="left">成交历史</div>
-                        <div class="right">
-                            <span @click="getMore">查看更多</span><img src="../../assets/img/new_arrow_right.png">
-                        </div>
-                    </div>
-                    <div class="box_content">
-                        <!-- <trade-history></trade-history> -->
-                    </div>
-                </div>
-                <div class="same_plate box" v-if="tabIndex==2&&samePlateInfo.newHouses&&samePlateInfo.newHouses.length>0">
-                    <div class="box_title">
-                        <div class="left">同板块销量排名</div>
-                        <div class="right" @click="gotoPlateDetail(samePlateInfo.plate_id)">
-                            <p>{{samePlateInfo.plate_name}}</p>
-                        </div>
-                    </div>
-                    <div class="box_content">
-                        <div class="block-content flex-row has-padding-margin" v-for="(item,key) in samePlateInfo.newHouses" :key="key" :class="{'rmBorder':key==samePlateInfo.newHouses.length-1, 'red': key ==samePlateInfo.currentIndex|| (samePlateInfo.currentIndex>=5 && key ==4)}" @click="gotoHouseDetail(item.house_id)">
-                            <div class="block-name">
-                                <span v-if="key<4">{{key+1}}.</span>
-                                <span v-if="samePlateInfo.currentIndex>=5&&key==4">{{samePlateInfo.currentIndex+1}}</span>
-                                <span v-if="samePlateInfo.currentIndex<5&&key==4">5</span>
-                                <span>{{item.house_name}}</span>
-                            </div>
-                            <div class="block-right flex-row">
-                                <div class="block-progress">{{item.sinprice}}元/㎡</div>
-                                <div class="block-number">{{item.count}}套</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tab3" v-show="tabIndex==3">
-                <!-- <house-info></house-info>
-                <house-comment></house-comment>
-                <house-timeline :fromtype="'secondHouse'"></house-timeline>
-                <house-ad></house-ad>
-                <house-map></house-map> -->
-            </div>
+            <!-- <div class="tab2" v-show="tabIndex==2">
+        				<house-pie-charts v-if="tabIndex==2"></house-pie-charts>
+        				<div class="trad_agency box" v-if="tabIndex==2&&agencyList.length>0">
+        					<div class="box_title">成交机构（近六个月）</div>
+        					<div class="box_content">
+        						<div class="agency-content flex-row has-padding-margin" v-if="key<5" v-for="(item,key) in agencyList">
+        							<div class="agency-name">{{key+1}}.{{item.agent}}</div>
+        							<div class="agency-progress"><div class="progress-inner" :style="{width: item.percent+'%'}"></div></div>
+        							<div class="trade-number">{{item.count}}套</div>
+        						</div>
+        					</div>
+        				</div>
+        				<div class="trad-history box" v-if="tabIndex==2">
+        					<div class="box_title">
+        						<div class="left">成交历史</div>
+        						<div class="right">
+        							<span @click="getMore">查看更多</span><img src="../../assets/img/new_arrow_right.png">
+        						</div>
+        					</div>
+        					<div class="box_content">
+        						<trade-history></trade-history>
+        					</div>
+        				</div>
+        				<div class="same_plate box" v-if="tabIndex==2&&samePlateInfo.newHouses&&samePlateInfo.newHouses.length>0">
+        					<div class="box_title">
+        						<div class="left">同板块销量排名</div>
+        						<div class="right" @click="gotoPlateDetail(samePlateInfo.plate_id)"><p>{{samePlateInfo.plate_name}}</p></div>
+        					</div>
+        					<div class="box_content">
+        						<div class="block-content flex-row has-padding-margin" v-for="(item,key) in samePlateInfo.newHouses"
+        							:class="{'rmBorder':key==samePlateInfo.newHouses.length-1, 'red': key ==samePlateInfo.currentIndex|| (samePlateInfo.currentIndex>=5 && key ==4)}"
+        							@click="gotoHouseDetail(item.house_id)">
+        							<div class="block-name">
+        								<span v-if="key<4">{{key+1}}.</span>
+        								<span v-if="samePlateInfo.currentIndex>=5&&key==4">{{samePlateInfo.currentIndex+1}}</span>
+        								<span v-if="samePlateInfo.currentIndex<5&&key==4">5</span>
+        								<span>{{item.house_name}}</span>
+        							</div>
+        							<div class="block-right flex-row">
+        								<div class="block-progress">{{item.sinprice}}元/㎡</div>
+        								<div class="block-number">{{item.count}}套</div>
+        							</div>
+        						</div>
+        					</div>
+        				</div>
+        			</div>
+        			<div class="tab3" v-show="tabIndex==3">
+        				<house-info></house-info>
+        				<house-comment></house-comment>
+        				<house-timeline :fromtype="'secondHouse'"></house-timeline>
+        				<house-ad></house-ad>
+        				<house-map></house-map>
+        			</div> -->
             <!-- <store-item :houseName="houseHeaderInfoOne.house_name"></store-item> -->
         </div>
         <download-app @closedownload="closeDownload" v-if="show_dowload" :fromPage="'house_second'" :houseId="$route.query.houseId"></download-app>
@@ -167,7 +165,7 @@ import mHead from '~/components/common/head.vue'
 import downloadApp from '~/components/common/download_app.vue'
 import Sticky from '~/components/common/Sticky';
 // import houseLineCharts from '~/components/house/house_line_charts.vue'
-import estimateItem from '~/components/estimate_item_old.vue'
+// import estimateItem from '~/components/estimate_item_old.vue'
 // import houseSame from '~/components/house/house_same.vue'
 
 // import storeItem from '../../components/store_item.vue'
@@ -179,62 +177,38 @@ import estimateItem from '~/components/estimate_item_old.vue'
 // import houseTimeline from '../../components/house_timeline.vue'
 // import houseMap from '../../components/house/house_map.vue'
 
-// import service from 'axios'
-import service from '~/plugins/axios'
+
+
+import service from 'axios'
+// import service from '~/plugins/axios'
 
 export default {
-    async asyncData(params) {
-        let data1 = await service.get(`/house/getHouseDetailHead?cityId=605&houseId=${params.query.houseId}`)
-        let data2 = await service.get(`/rabbit/v1/house/getHouseTopareaInfo?city_id=605&house_id=${params.query.houseId}`)
-        let data3 = await service.get(`/rabbit/v1/house/getHouseTrend?cityID=605&houseID=${params.query.houseId}`)
-        let data4 = await service.get(`/superior/v1/estate/getHouseSalesRoomList4Top5?city_id=605&house_id=${params.query.houseId}`)
-        let agencyList = await service.get(`/rabbit/v1/house/getHouseBargainsByAgentInfo?city_id=605&house_id=${params.query.houseId}`)
-        let samePlateInfo = await service.get(`/rabbit/v1/house/getHouseSalesRandOfPlate?city_id=605&house_id=${params.query.houseId}`)
-
-        // 涨跌预测
-        data3.data.body.desArray = data3.data.body.description.split('|');
-        let houseTrend = data3.data.body;
-        if (houseTrend.trend_result == ('上涨' || '持平')) {
-            houseTrend.trendResultColor = '#fd5056'
-        } else if (houseTrend.trend_result == '下跌') {
-            houseTrend.trendResultColor = '#00ADA9'
-        }
-
-        // 同板块销量排名
-        var res = samePlateInfo.data.body;
-        var j = -1;
-        for (let i = 0; i < res.houses.length; i++) {
-            if (res.houses[i].house_id == params.query.houseId) {
-                j = i;
-                break
-            }
-        }
-        res.currentIndex = j;
-        var currnetCourt = res.houses[j]
-        if (j > 4 && j < res.houses.length - 1) {
-            var list = [];
-            list = res.houses.slice(0, 4);
-            list.push(currnetCourt);
-            res.newHouses = list;
-        } else if (0 <= j <= 4) {
-            if (res.houses.length > 5) {
-                res.newHouses = res.houses.slice(0, 5);
-            } else {
-                res.newHouses = res.houses;
-            }
-        } else {
-            res.newHouses = res.houses.slice(0, 5);
-        }
-        samePlateInfo = res;
-
-        return {
-            houseHeaderInfoOne: data1.data,
-            houseHeaderInfoTwo: data2.data.body,
-            houseTrend: houseTrend,
-            onSalelists: data4.data.body,
-            agencyList: agencyList.data.body,
-            samePlateInfo: samePlateInfo
-        }
+    asyncData(params) {
+        // console.log(params)
+        let houseId = params.query.houseId;
+        return service.all([
+            service.get('https://inner299.2boss.cn/house/getHouseDetailHead', {
+                params: {
+                    cityId: 605,
+                    houseId: houseId
+                }
+            }),
+            service.get('https://inner299.2boss.cn/rabbit/v1/house/getHouseTopareaInfo', {
+                params: {
+                    city_id: 605,
+                    house_id: houseId
+                }
+            })
+        ])
+            .then(service.spread(function(houseHeadOne, houseHeadTwo) {
+                console.log(houseHeadOne)
+                console.log(houseHeadTwo)
+                return {
+                    houseHeaderInfoOne: houseHeadOne.data,
+                    houseHeaderInfoTwo: houseHeadTwo.data.body
+                }
+            }))
+            .catch(error => console.log(error))
     },
     name: 'house_second',
     data() {
@@ -257,7 +231,7 @@ export default {
         mHead,
         Sticky,
         downloadApp,
-        estimateItem,
+        // estimateItem,
         // houseSame,
         // storeItem,
         // tradeHistory,
@@ -272,6 +246,18 @@ export default {
     },
     methods: {
         init() {
+            window.scrollTo(0, 0);
+            this.tabIndex = 1;
+            this.params = {
+                city_id: this.$route.query.cityId,
+                house_id: this.$route.query.houseId
+            }
+            this.gethouseHeadOne();
+            this.gethouseHeadTwo();
+            this.getOnSales();
+            this.getTradeAgency();
+            this.getSamePlate();
+            this.gethouseTrend();
         },
         clickItem(index) {
             this.tabIndex = index;
@@ -283,6 +269,9 @@ export default {
         },
         closeDownload() {
             this.show_dowload = false;
+        },
+        onScroll(e) {
+            window.scrollY >= this.origOffsetY ? this.header.classList.add('sticky') : this.header.classList.remove('sticky');
         },
         gotoHouseDetail(houseId) {
             if (houseId == this.$route.query.houseId) {
@@ -299,8 +288,8 @@ export default {
             });
         },
         getMore() {
-            // recordEvent(41822, { "cityId": this.$route.query.cityId, 'houseId': this.$route.query.houseId, "page_type": 25, "userId": 0, "appName": 4, "appId": 4 });
-            location.href = this.$store.state.common.downloadApp;
+            recordEvent(41822, { "cityId": this.$route.query.cityId, 'houseId': this.$route.query.houseId, "page_type": 25, "userId": 0, "appName": 4, "appId": 4 });
+            location.href = this.$store.state.comm.downloadApp;
         },
         gethouseHeadOne(isGotoNext, houseId) {
             this.$vux.loading.show({
@@ -322,6 +311,75 @@ export default {
                 } else {
                     setShareInfoForWechat('house_second', window.location.href, { houseName: res.data.house_name });
                 }
+            }).catch(err => {
+                console.log(err)
+            });
+        },
+        gethouseHeadTwo() {
+            getHouseTopareaInfo(this.params).then(res => {
+                this.houseHeaderInfoTwo = res.data.body;
+            }).catch(err => {
+                console.log(err)
+            });
+        },
+        gethouseTrend() {
+            let params = {
+                cityID: this.$route.query.cityId,
+                houseID: this.$route.query.houseId
+            }
+            getHouseTrend(params).then(res => {
+                res.data.body.desArray = res.data.body.description.split('|');
+                this.houseTrend = res.data.body;
+                if (this.houseTrend.trend_result == ('上涨' || '持平')) {
+                    this.houseTrend.trendResultColor = '#fd5056'
+                } else if (this.houseTrend.trend_result == '下跌') {
+                    this.houseTrend.trendResultColor = '#00ADA9'
+                }
+            }).catch(err => {
+                console.log(err)
+            });
+        },
+        getOnSales() {
+            getHouseSalesRoomList4Top5(this.params).then(res => {
+                this.onSalelists = res.data.body;
+            }).catch(err => {
+                console.log(err)
+            });
+        },
+        getTradeAgency() {
+            getHouseBargainsByAgentInfo(this.params).then(res => {
+                this.agencyList = res.data.body;
+            }).catch(err => {
+                console.log(err)
+            });
+        },
+        getSamePlate() {
+            getHouseSalesRandOfPlate(this.params).then(res => {
+                var res = res.data.body;
+                var j = -1;
+                for (let i = 0; i < res.houses.length; i++) {
+                    if (res.houses[i].house_id == this.$route.query.houseId) {
+                        j = i;
+                        break
+                    }
+                }
+                res.currentIndex = j;
+                var currnetCourt = res.houses[j]
+                if (j > 4 && j < res.houses.length - 1) {
+                    var list = [];
+                    list = res.houses.slice(0, 4);
+                    list.push(currnetCourt);
+                    res.newHouses = list;
+                } else if (0 <= j <= 4) {
+                    if (res.houses.length > 5) {
+                        res.newHouses = res.houses.slice(0, 5);
+                    } else {
+                        res.newHouses = res.houses;
+                    }
+                } else {
+                    res.newHouses = res.houses.slice(0, 5);
+                }
+                this.samePlateInfo = res;
             }).catch(err => {
                 console.log(err)
             });
@@ -601,6 +659,7 @@ export default {
         }
         .trad_agency {
             .agency-content {
+                width: 100%;
                 align-items: center;
                 justify-content: space-around;
                 font-size: .13rem;
@@ -641,6 +700,7 @@ export default {
         }
         .same_plate {
             .block-content {
+                width: 100%;
                 align-items: center;
                 font-size: .15rem;
                 color: #474747;

@@ -56,8 +56,8 @@
 <script>
 import axios from 'axios'
 
-import estimateHead from '~/components/head.vue'
-import downloadApp from '~/components/download_app.vue'
+import estimateHead from '~/components/common/head.vue'
+import downloadApp from '~/components/common/download_app.vue'
 import setShareInfoForWechat from '~/assets/libs/shareForWechat.js'
 import { recordEvent } from '~/assets/libs/recordEvent.js'
 export default {
